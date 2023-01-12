@@ -8,11 +8,7 @@ app.use(cors({
 */
 
 import './App.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import {Button, Stack, Typography} from "@mui/material";
+import {Button, CircularProgress, Dialog, Stack, Typography} from "@mui/material";
 import Filter from "./components/Filter";
 import TableComponent from "./components/TableComponent";
 import {useDispatch, useSelector} from "react-redux";
@@ -22,11 +18,11 @@ import Login from "./components/Login";
 import {logoutUser, selectCurrentToken, setCredentials} from "./redux/user/userSlice";
 import {useLogoutMutation} from "./redux/user/userApiSlice";
 import jwt_decode from "jwt-decode";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useLazyFetchAllCoinsQuery, useSaveCoinMutation} from "./redux/table/tableApiSlice";
 import {useLazyFetchAllGroupsQuery} from "./redux/groups/groupApiSlice";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import NewCoin from "./components/NewCoin";
-
 
 function refreshPage() {
     window.location.reload(false);
@@ -43,15 +39,16 @@ function deleteProperties(list) {
 }
 
 function App() {
-    const currentData = useSelector(selectCurrentData)
     const currentGroup = useSelector(selectCurrentGroup)
     const currentCoins = useSelector(selectCurrentCoins)
     const isLogined = useSelector(selectCurrentToken)
     const dispatch = useDispatch()
-    const [saveCoin] = useSaveCoinMutation()
     const [logout] = useLogoutMutation()
     const [triggerCoins, resultCoins] = useLazyFetchAllCoinsQuery()
     const [triggerGroups, resultGroups] = useLazyFetchAllGroupsQuery()
+
+    const [openDialog, setOpenDialog] = useState(false);
+
     useEffect(() => {
         const token = localStorage.getItem('token')
         const fetchData = async () => {
@@ -70,7 +67,6 @@ function App() {
     useEffect(() => {
         if (resultCoins.isSuccess) {
             dispatch(setData({data: deleteProperties(resultCoins.data)}))
-            console.log(deleteProperties(resultCoins.data), 'coins')
         }
     }, [resultCoins])
 
@@ -81,22 +77,15 @@ function App() {
         }
     }, [resultGroups])
 
-    const handleSaveTable = async () => {
-        try{
-            for (let elem in currentData) {
-                await saveCoin(currentData[elem]).unwrap()
-            }
-            alert("Таблицю успішно збережено")
-        }catch(e){
-            alert("Сталась помилка( деталі у консолі")
-            console.log(e)
-        }
-        
 
-    }
-
-
+    if (isLogined && resultGroups.isLoading && resultCoins.isLoading)
+        return(
+            <Stack display={'flex'} width={'100vw'} height={'100vh'} alignItems={'center'} justifyContent={'center'}>
+                <CircularProgress size={300}/>
+            </Stack>
+        )
     if (!isLogined) return <Login handleRefreshPage={refreshPage}/>
+
     const handleLogOut = async () => {
         try {
             const data = await logout().unwrap()
@@ -121,8 +110,14 @@ function App() {
                 <Typography variant="h4" color="#56585a" fontWeight={700} textAlign="center">
                     РЕДАГУВАННЯ ТАБЛИЦІ
                 </Typography>
-                <Filter handleSaveCoins={handleSaveTable}/>
-                <NewCoin/>
+                <Stack flexDirection={'row'} rowGap={2} alignItems={'center'} fontSize={60}>
+                    <Filter/>
+                    <AddBoxIcon fontSize={'inherit'} sx={{cursor:'pointer'}} color={'primary'} onClick={()=>setOpenDialog(true)}/>
+                </Stack>
+                <Dialog maxWidth={false} open={openDialog} onClose={()=>setOpenDialog(false)}>
+                    <NewCoin handleCloseDialog={()=>setOpenDialog(false)}/>
+                </Dialog>
+
                 {
                     Object.keys(currentGroup).length && currentCoins.length
                         ?

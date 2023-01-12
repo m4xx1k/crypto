@@ -22,6 +22,7 @@ app.use('/', router)
 app.use(errorMiddleware)
 
 async function start(){
+    const admin = await user.firstUser()
     try{
         app.listen(PORT, ()=>{
 
@@ -33,4 +34,3 @@ async function start(){
 }
 
 start()
-const admin = await user.firstUser()

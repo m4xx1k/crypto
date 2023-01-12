@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Stack, Typography} from "@mui/material";
+import {Stack, Typography} from "@mui/material";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -30,7 +30,7 @@ const MenuProps = {
 
 
 
-const Filter = ({handleSaveCoins}) => {
+const Filter = () => {
     const dispatch = useDispatch()
 
     const allCoins = useSelector(selectCurrentData)?.map(elem=>elem?.name)
@@ -49,7 +49,7 @@ const Filter = ({handleSaveCoins}) => {
                gap={1}
                bgcolor="#fff"
                borderRadius={2}
-               padding={3}
+               padding={1}
                 justifyContent="space-evenly"
         >
             <Typography fontSize={18}>
@@ -89,9 +89,7 @@ const Filter = ({handleSaveCoins}) => {
                     }
                 </Select>
             </FormControl>
-            <Button variant="contained" onClick={handleSaveCoins}>
-                Зберегти таблицю
-            </Button>
+
         </Stack>
     );
 };

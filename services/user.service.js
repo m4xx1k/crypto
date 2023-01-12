@@ -60,7 +60,7 @@ class userService{
         if(user.length){
             return null
         }
-        const firstUser = this.registration(${process.env.ADMIN_LOGIN}, ${process.env.ADMIN_PASSWORD})
+        const firstUser = this.registration(process.env.ADMIN_LOGIN, process.env.ADMIN_PASSWORD)
         return null
     }
 

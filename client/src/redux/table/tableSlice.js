@@ -5,6 +5,7 @@ const tableState = createSlice({
     initialState: {
         data: [],
         currentCoins: [],
+        changedCoinsNames:[],
     },
 
     reducers: {
@@ -17,7 +18,9 @@ const tableState = createSlice({
                     return newRow
                 } else
                     return row
+
             })
+            if(!state.changedCoinsNames.includes(coin)) state.changedCoinsNames.push(coin)
         },
         changeCurrentCoins: (state, action) => {
             state.currentCoins = action.payload.coins
@@ -26,13 +29,9 @@ const tableState = createSlice({
             state.data = action.payload.data
         },
         addNewCoin: (state, action) => {
-            const newCoin = {}
-            for (let i = 1; i < 11; i++) {
-                newCoin[`c${i}`] = "1"
-            }
-            state.data.push({...newCoin, name: action.payload})
-            console.log(newCoin)
-        }
+            state.data.push(action.payload)
+            console.log(action.payload)
+        },
 
 
     }
@@ -40,6 +39,7 @@ const tableState = createSlice({
 
 export const selectCurrentData = state => state.table.data
 export const selectCurrentCoins = state => state.table.currentCoins
+export const selectChangedCoinsNames = state=>state.table.changedCoinsNames
 export const {changeValue, changeCurrentCoins, setData, addNewCoin} = tableState.actions
 
 export default tableState.reducer
