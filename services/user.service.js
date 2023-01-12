@@ -55,6 +55,14 @@ class userService{
         const token = await tokenService.removeToken(refreshToken)
         return token
     }
+    async firstUser(){
+        const user = await User.find()
+        if(user.length){
+            return null
+        }
+        const firstUser = this.registration(${process.env.ADMIN_LOGIN}, ${process.env.ADMIN_PASSWORD})
+        return null
+    }
 
 }
 module.exports = new userService()
