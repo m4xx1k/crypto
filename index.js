@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const router = require('./routers/index')
 const errorMiddleware = require('./middlewares/errorHandlingMiddleware')
 const ApiError = require('./errors/api.error')
+const user = require('./services/user.service')
 
 const PORT = 5000 || process.env.PORT
 
@@ -22,6 +23,8 @@ app.use(errorMiddleware)
 async function start(){
     try{
         app.listen(PORT, ()=>{
+            if(process.env.DB_URL!=='mongodb+srv://admin:admin@cluster0.gs38zif.mongodb.net/?retryWrites=true&w=majority') await user.registration('admin', 'admin')
+
             console.log(`server started on PORT: ${PORT}`)
         })
     }catch (e){
