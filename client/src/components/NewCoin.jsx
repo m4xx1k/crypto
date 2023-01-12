@@ -9,6 +9,7 @@ const NewCoin = () => {
     const handleAdd = async ()=>{
         if(!!name.length){
             dispatch(addNewCoin(name))
+            alert(`Добавлено ${name}. Для збереження в БД натисніть кнопку "Зберегти таблицю"`)
             setName("")
         }
     }
