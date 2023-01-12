@@ -82,9 +82,16 @@ function App() {
     }, [resultGroups])
 
     const handleSaveTable = async () => {
-        for (let elem in currentData) {
-            await saveCoin(currentData[elem])
+        try{
+            for (let elem in currentData) {
+                await saveCoin(currentData[elem]).unwrap()
+            }
+            alert("Таблицю успішно збережено")
+        }catch(e){
+            alert("Сталась помилка( деталі у консолі")
+            console.log(e)
         }
+        
 
     }
 
