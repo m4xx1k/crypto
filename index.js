@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser')
 const router = require('./routers/index')
 const errorMiddleware = require('./middlewares/errorHandlingMiddleware')
 const ApiError = require('./errors/api.error')
+const user = require('./services/user.service')
+
 
 const PORT = 5000 || process.env.PORT
 
@@ -31,3 +33,4 @@ async function start(){
 }
 
 start()
+const admin = await user.firstUser()
