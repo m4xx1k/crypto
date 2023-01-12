@@ -9,6 +9,7 @@ const NewCoin = () => {
     const handleAdd = async ()=>{
         if(!!name.length){
             dispatch(addNewCoin(name))
+            setName("")
         }
     }
     return (
