@@ -37,7 +37,6 @@ const Login = ({handleRefreshPage, type="login"}) => {
             <Button color='success' variant='contained' onClick={handleSubmit}>
                 {type==='login' ? 'Вхід' : '+'}
             </Button>
-
         </Stack>
     );
 };

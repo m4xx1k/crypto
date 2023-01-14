@@ -32,6 +32,13 @@ const tableState = createSlice({
             state.data.push(action.payload)
             console.log(action.payload)
         },
+        deleteCoin:(state,action)=>{
+            state.currentCoins = state.currentCoins.filter(coin=>coin!==action.payload)
+        },
+        addCoinFilter:(state, action)=>{
+            state.currentCoins.push(action.payload)
+        }
+
 
 
     }
@@ -40,6 +47,6 @@ const tableState = createSlice({
 export const selectCurrentData = state => state.table.data
 export const selectCurrentCoins = state => state.table.currentCoins
 export const selectChangedCoinsNames = state=>state.table.changedCoinsNames
-export const {changeValue, changeCurrentCoins, setData, addNewCoin} = tableState.actions
+export const {changeValue, changeCurrentCoins, setData, addNewCoin, deleteCoin,addCoinFilter} = tableState.actions
 
 export default tableState.reducer

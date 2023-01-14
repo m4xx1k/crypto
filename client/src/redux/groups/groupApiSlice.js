@@ -11,8 +11,15 @@ export const groupsApiSlice = apiSlice.injectEndpoints({
                 method:'DELETE',
                 body:{filterId}
             })
+        }),
+        createGroup: build.mutation({
+            query: body=>({
+                url:'/filter/create',
+                method:"POST",
+                body
+            })
         })
     })
 })
 
-export const {useLazyFetchAllGroupsQuery, useDeleteGroupMutation} = groupsApiSlice
+export const {useLazyFetchAllGroupsQuery, useCreateGroupMutation} = groupsApiSlice

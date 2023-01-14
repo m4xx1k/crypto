@@ -6,16 +6,16 @@ import {useSaveCoinMutation} from "../redux/table/tableApiSlice";
 
 const initialCoinData = {
     name: '',
-    c1: '',
-    c2: '',
-    c3: '',
-    c4: '',
-    c5: '',
-    c6: '',
-    c7: '',
-    c8: '',
-    c9: '',
-    c10: '',
+    c1: '0',
+    c2: '0',
+    c3: '0',
+    c4: '0',
+    c5: '0',
+    c6: '0',
+    c7: '0',
+    c8: '0',
+    c9: '0',
+    c10: '0',
 }
 const NewCoin = ({handleCloseDialog}) => {
     const [newCoinData, setNewCoinData] = useState(initialCoinData)
@@ -33,7 +33,7 @@ const NewCoin = ({handleCloseDialog}) => {
              dispatch(addNewCoin(newCoinData))
              await saveCoin(newCoinData)
              handleCloseDialog()
-             alert(`Добавлено ${newCoinData.name}. Для збереження в БД натисніть кнопку "Зберегти таблицю"`)
+             alert(`Добавлено ${newCoinData.name}`)
              setNewCoinData(initialCoinData)
          }
      }

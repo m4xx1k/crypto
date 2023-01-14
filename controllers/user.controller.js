@@ -13,7 +13,7 @@ class userController{
 
             return res.json(userData)
         }catch (e) {
-            next(e)
+            next()//e
         }
     }
     async login(req, res, next){
@@ -27,7 +27,7 @@ class userController{
 
             return res.json({accessToken: userData.accessToken, user: userData.user})
         }catch (e){
-            next(e)
+            next()//e
         }
     }
     async refresh(req, res, next){
@@ -41,7 +41,7 @@ class userController{
 
             return res.json({accessToken: userData.accessToken, user: userData.user})
         }catch (e) {
-            next(e)
+            next()//e
         }
     }
 
@@ -53,7 +53,7 @@ class userController{
 
             return res.json(token)
         }catch (e) {
-            next(e)
+            next()//e
         }
     }
 

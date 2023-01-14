@@ -12,7 +12,7 @@ class coinController{
 
             return res.json(coin)
         }catch (e){
-            next(e)
+            next()//e
         }
     }
 
@@ -22,7 +22,7 @@ class coinController{
 
             return res.json(coins)
         }catch (e){
-            next(e)
+            next()//e
         }
     }
 
@@ -36,7 +36,7 @@ class coinController{
 
             return res.json(coin)
         }catch (e){
-            next(e)
+            next()//e
         }
     }
 
@@ -65,7 +65,7 @@ class coinController{
 
             return res.json(coin)
         }catch (e) {
-            next(e)
+            next()//e
         }
     }
 

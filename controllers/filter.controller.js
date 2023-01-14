@@ -12,7 +12,7 @@ class filterController{
 
             return res.json(filter)
         }catch (e){
-            next(e)
+            next()/ee
         }
     }
 
@@ -22,7 +22,7 @@ class filterController{
 
             return res.json(filters)
         }catch (e){
-            next(e)
+            next()//e
         }
     }
 
@@ -36,7 +36,7 @@ class filterController{
 
             return res.json(filter)
         }catch (e){
-            next(e)
+            next()//e
         }
     }
 
@@ -50,7 +50,7 @@ class filterController{
 
             return res.json(filter)
         }catch (e){
-            next(e)
+            next()//e
         }
     }
 

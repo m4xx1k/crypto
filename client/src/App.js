@@ -39,6 +39,7 @@ function deleteProperties(list) {
 }
 
 function App() {
+    console.log('a')
     const currentGroup = useSelector(selectCurrentGroup)
     const currentCoins = useSelector(selectCurrentCoins)
     const isLogined = useSelector(selectCurrentToken)

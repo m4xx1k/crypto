@@ -4,19 +4,21 @@ import TableRow from "@mui/material/TableRow";
 import {Button, TextField} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentGroup} from "../redux/groups/groupsSlice";
-import {changeValue} from "../redux/table/tableSlice";
+import {changeValue, deleteCoin} from "../redux/table/tableSlice";
 import {useDeleteCoinMutation} from "../redux/table/tableApiSlice";
 
 
 const Row = ({row}) => {
     const dispatch = useDispatch()
     const group = useSelector(selectCurrentGroup)
-    const [deleteCoin] = useDeleteCoinMutation()
+    const [deleteCoinRequest] = useDeleteCoinMutation()
+
     const handleChange = (coin, column, newValue) => {
         dispatch(changeValue({coin, column, newValue}))
     }
     const handleDeleteCoin= async ()=>{
-        await deleteCoin(row.name)
+        dispatch(deleteCoin(row.name))
+        await deleteCoinRequest(row.name)
     }
 
     return (
