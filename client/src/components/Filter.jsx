@@ -75,7 +75,7 @@ const Filter = () => {
             console.log(modifyNewGroupValues(newGroup))
             await createGroup(newGroup).unwrap()
             setOpenDialog(false)
-            alert('Добавлено групу '+newGroup.name)
+            alert('Добавлено групу '+newGroup.name+'. Оновіть сторінку')
             setNewGroup(initialGroupData)
         }catch (e){
             console.log(e)
