@@ -1,48 +1,19 @@
-/* eslint-disable */
-/*
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {selectCurrentGroup, setGroups} from "../redux/groups/groupsSlice";
+import {selectCurrentCoins, setData} from "../redux/table/tableSlice";
+import {logoutUser, selectCurrentToken, setCredentials} from "../redux/user/userSlice";
+import {useLogoutMutation} from "../redux/user/userApiSlice";
+import {useLazyFetchAllCoinsQuery} from "../redux/table/tableApiSlice";
+import {useLazyFetchAllGroupsQuery} from "../redux/groups/groupApiSlice";
+import jwt_decode from "jwt-decode";
+import {Button, CircularProgress, Dialog, Stack, Typography} from "@mui/material";
+import Login from "../components/Login";
+import Filter from "../components/Filter";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import NewCoin from "../components/NewCoin";
+import TableComponent from "../components/TableComponent";
 
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-}))
-*/
-
-import './App.css';
-
-import Projects from "./pages/Projects";
-import AuthRequire from "./components/AuthRequire";
-import Parsing from "./pages/Parsing";
-import Users from "./pages/Users";
-import {Route, Routes} from "react-router-dom";
-import Login from "./components/Login";
-import Layout from "./components/Layout";
-
-
-
-function App (){
-    return (
-        <Routes>
-            {/*private routes*/}
-            <Route element={<AuthRequire/>}>
-                <Route element={<Layout/>}>
-                    <Route index element={<Projects/>}/>
-                    <Route path="/users" element={<Users/>}/>
-                    <Route path="/parsing" element={<Parsing/>}/>
-                </Route>
-
-            </Route>
-            {/*public routes*/}
-            <Route path="/login" element={<Login/>}/>
-        </Routes>
-    )
-}
-
-
-
-
-
-
-/*
 function refreshPage() {
     window.location.reload(false);
 }
@@ -57,9 +28,7 @@ function deleteProperties(list) {
     })
 }
 
-
-function App() {
-    console.log('a')
+function Projects() {
     const currentGroup = useSelector(selectCurrentGroup)
     const currentCoins = useSelector(selectCurrentCoins)
     const isLogined = useSelector(selectCurrentToken)
@@ -119,7 +88,6 @@ function App() {
     }
 
     return (
-        <div className="App">
             <Stack width="100%" height="100%" display="flex" alignItems="center" flexDirection="column" gap={2}
                    paddingTop={2}>
                 <Stack display='flex' flexDirection={'row'} gap={1}>
@@ -149,9 +117,7 @@ function App() {
 
             </Stack>
 
-        </div>
     );
 }
-*/
 
-export default App;
+export default Projects;

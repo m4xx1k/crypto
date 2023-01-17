@@ -3,13 +3,15 @@ import {Button, Stack, TextField, Typography} from "@mui/material";
 import {authApiSlice, useRegistrationMutation} from "../redux/user/userApiSlice";
 import {useDispatch} from "react-redux";
 import {setCredentials} from "../redux/user/userSlice";
+import {useNavigate} from "react-router-dom";
 
-const Login = ({handleRefreshPage, type="login"}) => {
+const Login = ({ type="login"}) => {
     const dispatch = useDispatch()
     const [login, setLogin] = useState('')
     const [pass, setPass] = useState('')
     const [registration] = useRegistrationMutation()
     const [handleLogin] = authApiSlice.useLoginMutation()
+    const navigate = useNavigate()
     const handleSubmit = async () => {
         if(login.length && pass.length) {
             try {
@@ -21,7 +23,7 @@ const Login = ({handleRefreshPage, type="login"}) => {
                     alert(`Добавленно нового адміна! Логін: ${login} Пароль: ${pass}`)
                 }
 
-                handleRefreshPage()
+                navigate('/')
             } catch (e) {
                 console.log(e)
                 alert('Сталась помилка(')

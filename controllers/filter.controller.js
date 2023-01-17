@@ -4,15 +4,16 @@ const filterService = require('../services/filter.service')
 class filterController{
     async create(req, res, next){
         try{
-            const{name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10} = req.body
-            if(name == undefined || c1 == undefined || c2 == undefined || c3 == undefined || c4 == undefined || c5 == undefined || c6 == undefined || c7 == undefined || c8 == undefined || c9 == undefined || c10 == undefined){
+            const {name, img, price, ath_price, ath_time, atl_price, atl_time, market_cap, total_supply} = req.body
+            if (name == undefined || img == undefined || ath_price == undefined || ath_time == undefined || atl_price == undefined || atl_time == undefined || market_cap == undefined || total_supply == undefined || price == undefined) {
                 return next(ApiError.badRequest())
             }
-            const filter = await filterService.create(name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+            console.log({name, img, price, ath_price, ath_time, atl_price, atl_time, market_cap, total_supply})
+            const filter = await filterService.create({name, img, price, ath_price, ath_time, atl_price, atl_time, market_cap, total_supply})
 
             return res.json(filter)
         }catch (e){
-            next()/ee
+            next()
         }
     }
 
@@ -29,7 +30,7 @@ class filterController{
     async delete(req, res, next){
         try{
             const {name} = req.body
-            if(name == undefined){
+            if(name === undefined){
                 return next(ApiError.badRequest())
             }
             const filter = await filterService.delete(name)
@@ -40,19 +41,6 @@ class filterController{
         }
     }
 
-    async switchFilter(req, res, next){
-        try{
-            const {name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10} = req.body
-            if(name == undefined || c1 == undefined || c2 == undefined || c3 == undefined || c4 == undefined || c5 == undefined || c6 == undefined || c7 == undefined || c8 == undefined || c9 == undefined || c10 == undefined){
-                    return next(ApiError.badRequest())
-            }
-            const filter = await filterService.switchFilter(name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
-
-            return res.json(filter)
-        }catch (e){
-            next()//e
-        }
-    }
 
 }
 

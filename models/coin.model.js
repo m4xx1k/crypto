@@ -5,49 +5,37 @@ const schema = new db.Schema({
         type: String,
         required: true
     },
-    visible: {
-        type: Boolean,
-        default: true
+    img:{
+        type:String,
+        required:true
     },
-    c1: {
+    price: {
         type: String,
         required: true
     },
-    c2: {
+    ath_price: {
         type: String,
         required: true
     },
-    c3: {
+    ath_time: {
         type: String,
         required: true
     },
-    c4: {
+    atl_price: {
         type: String,
         required: true
     },
-    c5: {
+    atl_time: {
         type: String,
         required: true
     },
-    c6: {
+    market_cap: {
         type: String,
         required: true
     },
-    c7: {
-        type: String,
-        required: true
-    },
-    c8: {
-        type: String,
-        required: true
-    },
-    c9: {
-        type: String,
-        required: true
-    },
-    c10: {
-        type: String,
-        required: true
+    total_supply:{
+        type:String,
+        required:true
     }
 
 })

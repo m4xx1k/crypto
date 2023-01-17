@@ -5,43 +5,35 @@ const schema = new db.Schema({
         type: String,
         required: true
     },
-    c1: {
+    img: {
         type: Boolean,
         default: true
     },
-    c2: {
+    price: {
         type: Boolean,
         default: true
     },
-    c3: {
+    ath_price: {
         type: Boolean,
         default: true
     },
-    c4: {
+    ath_time: {
         type: Boolean,
         default: true
     },
-    c5: {
+    atl_price: {
         type: Boolean,
         default: true
     },
-    c6: {
+    atl_time: {
         type: Boolean,
         default: true
     },
-    c7: {
+    market_cap: {
         type: Boolean,
         default: true
     },
-    c8: {
-        type: Boolean,
-        default: true
-    },
-    c9: {
-        type: Boolean,
-        default: true
-    },
-    c10: {
+    total_supply: {
         type: Boolean,
         default: true
     }
