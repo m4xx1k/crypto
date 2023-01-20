@@ -31,7 +31,7 @@ const Login = ({ type="login"}) => {
         }
     }
     return (
-        <Stack padding={2} gap={1} display="flex" flexDirection='row' alignItems='center' bgcolor="#fff"
+        <Stack padding={2} gap={1} display="flex" width={'fit-content'} flexDirection='row' alignItems='center' bgcolor="#fff"
                borderRadius={2}>
             <Typography>{type==='login' ? 'Вхід' : "Добавлення адміна"}</Typography>
             <TextField size='small' value={login} label="Login" onChange={e => setLogin(e.target.value)}/>

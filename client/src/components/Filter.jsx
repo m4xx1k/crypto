@@ -17,15 +17,6 @@ import {useCreateGroupMutation} from "../redux/groups/groupApiSlice";
 import {FixedSizeList as List} from 'react-window';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-const ITEM_HEIGHT = 32;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP, width: 180,
-        },
-    },
-};
 
 const initialGroupData = {
     name: '',
@@ -36,7 +27,18 @@ const initialGroupData = {
     atl_price: '0',
     atl_time: '0',
     market_cap: '0',
-    total_supply: '0'
+    total_supply: '0',
+    full_name: '0',
+    c1:'0',
+    c2:'0',
+    c3:'0',
+    c4:'0',
+    c5:'0',
+    c6:'0',
+    c7:'0',
+    c8:'0',
+    c9:'0',
+    c10:'0'
 }
 const modifyNewGroupValues = (newGroup) => {
     let res = {}
@@ -61,7 +63,6 @@ const Filter = () => {
 
     const open = Boolean(anchorEl);
 
-
     const [newGroup, setNewGroup] = useState(initialGroupData)
     const [createGroup] = useCreateGroupMutation()
     const handleChange = (key, value) => {
@@ -74,7 +75,7 @@ const Filter = () => {
     const [openDialog, setOpenDialog] = useState(false);
 
     const dispatch = useDispatch()
-    const handleChangeCoins = (coin) => dispatch(changeCurrentCoins(coin))
+
 
     const CoinSelect = ({index, style}) => {
         const coin = allCoins[index]
@@ -86,7 +87,9 @@ const Filter = () => {
 
     const allCoins = useSelector(selectCurrentData)?.map(elem => elem?.name)
     const currentCoins = useSelector(selectCurrentCoins)
-
+    const handleChangeCoins = (coin) => {
+        dispatch(changeCurrentCoins(coin))
+    }
     const groups = useSelector(selectGroups)
     const currentGroup = useSelector(selectCurrentGroup)
     const handleAdd = async () => {
@@ -118,10 +121,14 @@ const Filter = () => {
         <Dialog maxWidth={false} open={openDialog} onClose={() => setOpenDialog(false)}>
             <Stack padding={2} bgcolor='#fff' borderRadius={2} alignItems={'center'}>
                 <Typography fontSize={22}>Добавлення нової групи</Typography>
-                <Typography fontSize={14} color={'grey'} marginBottom={1}>*поле name обовязкове</Typography>
-                <Stack display='flex' flexDirection='row' gap={1}>
-                    {Object.keys(newGroup).map(key => <TextField label={key} key={key} value={newGroup[key]}
-                                                                 onChange={(e) => handleChange(key, e.target.value)}/>)}
+                <Typography fontSize={14} color={'grey'} marginBottom={1}>*поле name обовязкове, значення 0 - не показується. 1 - показується</Typography>
+                <Stack display='flex' flexDirection='row' gap={1} overflow={'scroll'} maxWidth={'85vw'} height='100px' alignItems={'center'}>
+                    {
+                        Object.keys(newGroup).map(key =>
+                            <TextField sx={{minWidth:"100px"}} label={key} key={key} value={newGroup[key]}
+                                       onChange={(e) => handleChange(key, e.target.value)}
+                            />)
+                    }
                 </Stack>
                 <Button sx={{width: '30%', marginTop: 1}} variant={'contained'} onClick={handleAdd}>Додати</Button>
 
@@ -133,7 +140,9 @@ const Filter = () => {
         <FormControl sx={{m: 1, width: 260}} size="small">
 
             <Button onClick={handleClick} variant={'outlined'} sx={{width: 200}}>
-                Вибрати монетки
+                <Typography textOverflow={'ellipsis'}>
+                    Вибрати монети </Typography>
+
                 {
                     Boolean(anchorEl) ? <ArrowDropUpIcon/> : <ArrowDropDownIcon/>
                 }

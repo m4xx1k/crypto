@@ -33,7 +33,6 @@ function Projects() {
     const currentCoins = useSelector(selectCurrentCoins)
     const isLogined = useSelector(selectCurrentToken)
     const dispatch = useDispatch()
-    const [logout] = useLogoutMutation()
     const [triggerCoins, resultCoins] = useLazyFetchAllCoinsQuery()
     const [triggerGroups, resultGroups] = useLazyFetchAllGroupsQuery()
 
@@ -76,24 +75,12 @@ function Projects() {
         )
     if (!isLogined) return <Login handleRefreshPage={refreshPage}/>
 
-    const handleLogOut = async () => {
-        try {
-            const data = await logout().unwrap()
-            dispatch(logoutUser())
-            refreshPage()
-            console.log(data, localStorage.getItem('token'))
-        } catch (e) {
-            console.log(e)
-        }
-    }
+
 
     return (
             <Stack width="100%" height="100%" display="flex" alignItems="center" flexDirection="column" gap={2}
                    paddingTop={2}>
-                <Stack display='flex' flexDirection={'row'} gap={1}>
-                    <Button variant='contained' onClick={handleLogOut} size='small'>Вийти</Button>
-                    <Login handleRefreshPage={refreshPage} type="registration"/>
-                </Stack>
+
 
 
                 <Typography variant="h4" color="#56585a" fontWeight={700} textAlign="center">

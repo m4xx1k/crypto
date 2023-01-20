@@ -26,6 +26,7 @@ const TableComponent = () => {
     const [saveCoin] = useSaveCoinMutation()
     const [isSaving, setIsSaving] =useState(false)
     const handleSave = async ()=>{
+        console.log(changedCoinsNames)
         setIsSaving(true)
         try{
             changedCoinsNames.forEach( async (coinName)=>{
@@ -48,7 +49,7 @@ const TableComponent = () => {
 
     )
     return (
-        <Box sx={{padding:2, maxWidth:"90vw"}} display={'flex'} flexDirection={'column'} alignItems={'center'} gap={2}>
+        <Box sx={{padding:2, maxWidth:"90vw"}} display={'flex'} flexDirection={'column'} alignItems={'center'} gap={1}>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650}} aria-label="simple table">
                     <TableHead>
@@ -58,7 +59,7 @@ const TableComponent = () => {
                                 Object.keys(group).map(elem=>{
                                     if(group[elem] && elem!=="name"){
                                         return (
-                                            <TableCell key={elem} align="center">{elem}</TableCell>
+                                            <TableCell key={elem} align="center">{elem.toUpperCase().replace("_"," ")}</TableCell>
                                         )
                                     }else return null
                                 })

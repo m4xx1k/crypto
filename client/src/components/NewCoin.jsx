@@ -13,7 +13,18 @@ const initialCoinData = {
     atl_price: '0',
     atl_time: '0',
     market_cap: '0',
-    total_supply: '0'
+    total_supply: '0',
+    full_name:"-",
+    c1:'1',
+    c2:'1',
+    c3:'1',
+    c4:'1',
+    c5:'1',
+    c6:'1',
+    c7:'1',
+    c8:'1',
+    c9:'1',
+    c10:'1'
 }
 const NewCoin = ({handleCloseDialog}) => {
     const [newCoinData, setNewCoinData] = useState(initialCoinData)
@@ -39,10 +50,10 @@ const NewCoin = ({handleCloseDialog}) => {
         <Stack padding={2} bgcolor='#fff' borderRadius={2} alignItems={'center'}>
             <Typography fontSize={22}>Добавлення нового рядка</Typography>
             <Typography fontSize={14} color={'grey'} marginBottom={1}>*поле name обовязкове</Typography>
-            <Stack display='flex' flexDirection='row' gap={1}>
+            <Stack display='flex' flexDirection='row' gap={1} overflow={'scroll'} maxWidth={'85vw'} height='100px' alignItems={'center'}>
                 {
                     Object.keys(newCoinData).map(key => (
-                        <TextField label={key} key={key} value={newCoinData[key]} onChange={(e) => handleChange(key,e.target.value)}/>
+                        <TextField sx={{minWidth:'150px'}} label={key} key={key} value={newCoinData[key]} onChange={(e) => handleChange(key,e.target.value)}/>
                     ))
                 }
             </Stack>

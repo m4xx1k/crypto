@@ -5,6 +5,13 @@ const tokenService = require('../services/token.service')
 const UserDto = require('../dtos/user.dto')
 
 class userService{
+    async findAll() {
+        return await User.find()
+    }
+    async delete(login) {
+        return await User.findOneAndDelete({login})
+    }
+
     async registration(login, password){
         const candidate = await User.findOne({login})
         if(candidate){

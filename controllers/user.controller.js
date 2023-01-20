@@ -2,6 +2,30 @@ const ApiError = require(`../errors/api.error`)
 const userService = require('../services/user.service')
 
 class userController{
+    async findAll(req,res,next){
+        try{
+            const users = await userService.findAll()
+
+            return res.json(users)
+        }catch (e) {
+            next(e)
+        }
+    }
+
+    async delete(req, res, next) {
+        try {
+            const {login} = req.body
+            if (!login) {
+                return next(ApiError.badRequest())
+            }
+            const userData = await userService.delete(login)
+
+            return res.json(userData)
+        } catch (e) {
+            next()//e
+        }
+    }
+
     async registration(req, res, next){
         try{
             const {login, password} = req.body

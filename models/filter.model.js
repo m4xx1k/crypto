@@ -36,6 +36,46 @@ const schema = new db.Schema({
     total_supply: {
         type: Boolean,
         default: true
+    },
+    c1: {
+        type: Boolean,
+        required: true
+    },
+    c2: {
+        type: Boolean,
+        required: true
+    },
+    c3: {
+        type: Boolean,
+        required: true
+    },
+    c4: {
+        type: Boolean,
+        required: true
+    },
+    c5: {
+        type: Boolean,
+        required: true
+    },
+    c6: {
+        type: Boolean,
+        required: true
+    },
+    c7: {
+        type: Boolean,
+        required: true
+    },
+    c8: {
+        type: Boolean,
+        required: true
+    },
+    c9: {
+        type: Boolean,
+        required: true
+    },
+    c10: {
+        type: Boolean,
+        required: true
     }
 
 })

@@ -23,8 +23,13 @@ const tableState = createSlice({
             if(!state.changedCoinsNames.includes(coin)) state.changedCoinsNames.push(coin)
         },
         changeCurrentCoins: (state, action) => {
-            state.currentCoins.push(action.payload)
-            //state.currentCoins = action.payload.coins
+            console.log(action.payload, state.currentCoins)
+            if(state.currentCoins.includes(action.payload)) {
+                console.log(state.currentCoins)
+                state.currentCoins = state.currentCoins.filter(coin => coin !== action.payload)
+                console.log(state.currentCoins)
+            }
+            else state.currentCoins.push(action.payload)
         },
         setData: (state, action) => {
             state.data = action.payload.data

@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentGroup} from "../redux/groups/groupsSlice";
 import {changeValue, deleteCoin} from "../redux/table/tableSlice";
 import {useDeleteCoinMutation} from "../redux/table/tableApiSlice";
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Row = ({row}) => {
     const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const Row = ({row}) => {
                     if (group[elem] && elem !== "name") {
                         return (
                             <TableCell key={elem} align="center">
-                                <TextField label={`${row.name} ${elem}`} size="small" value={row[elem]}
+                                <TextField fullWidth size="small" value={row[elem]}
                                            onChange={(e) => handleChange(row.name, elem, e.target.value)}/>
                             </TableCell>
                         )
@@ -41,8 +41,9 @@ const Row = ({row}) => {
                 })
             }
             <TableCell>
-                <Button onClick={handleDeleteCoin} size='small' variant='contained' sx={{padding: 0, minWidth: "18px"}}
-                               color='error'>-</Button>
+                {/*<Button onClick={handleDeleteCoin} size='small' variant='contained' sx={{padding: 0, minWidth: "18px"}}*/}
+                {/*               color='error'>-</Button>*/}
+                <DeleteIcon color={'error'} sx={{cursor:"pointer"}} onClick={handleDeleteCoin} />
             </TableCell>
         </TableRow>
     );
