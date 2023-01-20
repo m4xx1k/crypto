@@ -18,8 +18,8 @@ class userService{
             throw ApiError.preconditionFailed('Корситувач з таким login вже зареєстрований!')
         }
         const hashPassword = await bcrypt.hash(password, 3)
-
-        const user = await User.create({login, password: hashPassword})
+        const time = new Date().toISOString()
+        const user = await User.create({login, password: hashPassword, time})
 
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})

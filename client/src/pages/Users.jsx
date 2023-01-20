@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDeleteUserMutation, useGetAllUsersQuery} from "../redux/user/userApiSlice";
-import {Card, Stack, Typography} from "@mui/material";
+import {Card, Stack, Typography, Tooltip} from "@mui/material";
 import Login from "../components/Login";
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -20,10 +20,13 @@ const Users = () => {
             <Stack display={'flex'} width={'80vw'} gap={1} flexDirection={'row'}>
                 {
                     data.map((user, index)=>(
-                        <Card sx={{width:'fit-content', display:'flex', alignItems:'center', padding:1, gap:1}} key={user.login}>
-                            <Typography fontSize={22}>{`${index+1}. ${user.login}`}</Typography>
-                            <DeleteIcon sx={{cursor:'pointer'}} onClick={()=>handleDeleteUser(user.login)} color={'error'}/>
-                        </Card>
+                        <Tooltip  key={user.login} title={user.time ? user?.time : ''}>
+                            <Card sx={{width:'fit-content', display:'flex', alignItems:'center', padding:1, gap:1}}>
+                                <Typography fontSize={22}>{`${index+1}. ${user.login}`}</Typography>
+                                <DeleteIcon sx={{cursor:'pointer'}} onClick={()=>handleDeleteUser(user.login)} color={'error'}/>
+                            </Card>
+                        </Tooltip>
+
                     ))
                 }
             </Stack>

@@ -11,6 +11,10 @@ const schema = new db.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    time:{
+        type:String,
+        required:false
     }
 })
 
