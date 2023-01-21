@@ -55,9 +55,10 @@ const TableComponent = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Coin</TableCell>
+                            <TableCell>Full Name</TableCell>
                             {
                                 Object.keys(group).map(elem=>{
-                                    if(group[elem] && elem!=="name"){
+                                    if(group[elem] && elem!=="name" && elem!=='full_name'){
                                         return (
                                             <TableCell key={elem} align="center">{elem.toUpperCase().replace("_"," ")}</TableCell>
                                         )

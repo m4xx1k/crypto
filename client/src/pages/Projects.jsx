@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentGroup, setGroups} from "../redux/groups/groupsSlice";
 import {selectCurrentCoins, setData} from "../redux/table/tableSlice";
-import {logoutUser, selectCurrentToken, setCredentials} from "../redux/user/userSlice";
-import {useLogoutMutation} from "../redux/user/userApiSlice";
+import { selectCurrentToken, setCredentials} from "../redux/user/userSlice";
 import {useLazyFetchAllCoinsQuery} from "../redux/table/tableApiSlice";
 import {useLazyFetchAllGroupsQuery} from "../redux/groups/groupApiSlice";
 import jwt_decode from "jwt-decode";
-import {Button, CircularProgress, Dialog, Stack, Typography} from "@mui/material";
+import { CircularProgress, Dialog, Stack, Typography} from "@mui/material";
 import Login from "../components/Login";
 import Filter from "../components/Filter";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -106,5 +105,4 @@ function Projects() {
 
     );
 }
-
 export default Projects;

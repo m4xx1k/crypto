@@ -77,18 +77,20 @@ const Filter = () => {
     const dispatch = useDispatch()
 
 
+
+
+    const allCoins = useSelector(selectCurrentData)?.map(elem => elem?.name)
+    const currentCoins = useSelector(selectCurrentCoins)
+    const handleChangeCoins = (coin) => {
+        dispatch(changeCurrentCoins(coin))
+    }
+
     const CoinSelect = ({index, style}) => {
         const coin = allCoins[index]
         return (<MenuItem sx={style} key={coin} value={coin} onClick={() => handleChangeCoins(coin)}>
             <Checkbox checked={currentCoins.includes(coin)}/>
             <ListItemText primary={coin}/>
         </MenuItem>)
-    }
-
-    const allCoins = useSelector(selectCurrentData)?.map(elem => elem?.name)
-    const currentCoins = useSelector(selectCurrentCoins)
-    const handleChangeCoins = (coin) => {
-        dispatch(changeCurrentCoins(coin))
     }
     const groups = useSelector(selectGroups)
     const currentGroup = useSelector(selectCurrentGroup)
